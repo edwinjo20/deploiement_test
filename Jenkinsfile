@@ -57,13 +57,13 @@ pipeline {
 
         stage('Déploiement') {
             steps {
-                    sh "rm -rf /path/to/deploy/${DEPLOY_DIR}"  
-                    sh "mkdir -p /path/to/deploy/${DEPLOY_DIR}"  
-                    sh "cp -rT ${DEPLOY_DIR} /path/to/deploy/${DEPLOY_DIR}"  
-                    sh "chmod -R 775 /path/to/deploy/${DEPLOY_DIR}/var"
-
+                sh "rm -rf /var/www/html/${DEPLOY_DIR}"  
+                sh "mkdir -p /var/www/html/${DEPLOY_DIR}"  
+                sh "cp -rT ${DEPLOY_DIR} /var/www/html/${DEPLOY_DIR}"  
+                sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var"
             }
         }
+
     }
 
     post {
