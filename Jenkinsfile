@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Cloner le dépôt') {
             steps {
-                sh "rm -rf ${DEPLOY_DIR}" // Cleanup previous build
+                sh "rm -rf ${DEPLOY_DIR}" // Nettoyage du précédent build
                 sh "git clone -b ${GIT_BRANCH} ${GIT_REPO} ${DEPLOY_DIR}"
             }
         }
@@ -57,21 +57,20 @@ pipeline {
 
         stage('Déploiement') {
             steps {
-                sh "rm -rf /var/www/html/${DEPLOY_DIR}" // Remove old directory
-                sh "mkdir -p /var/www/html/${DEPLOY_DIR}" // Create new directory
-                sh "cp -rT ${DEPLOY_DIR} /var/www/html/${DEPLOY_DIR}" // Copy files
-                sh "chown -R jenkins:www-data /var/www/html/${DEPLOY_DIR}" // Set correct ownership
-                sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var" // Ensure write access
+                sh "rm -rf /var/www/html/${DEPLOY_DIR}" // Supprime le dossier de destination
+                sh "mkdir /var/www/html/${DEPLOY_DIR}" // Recréé le dossier de destination
+                sh "cp -rT ${DEPLOY_DIR} /var/www/html/${DEPLOY_DIR}"
+                sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var"
             }
         }
     }
 
     post {
         success {
-            echo '🚀 Déploiement réussi !'
+            echo 'Déploiement réussi !'
         }
         failure {
-            echo '❌ Erreur lors du déploiement.'
+            echo 'Erreur lors du déploiement.'
         }
     }
 }
