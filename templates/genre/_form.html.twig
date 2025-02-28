@@ -1,0 +1,7 @@
+{{ form_start(form, { 'attr': {'novalidate': 'novalidate'} }) }}
+    {{ form_widget(form) }}
+
+    <!-- Explicitly add CSRF token (if missing) -->
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('genre_form') }}">
+
+{{ form_end(form) }}

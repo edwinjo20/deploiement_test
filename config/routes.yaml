@@ -1,0 +1,24 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+app_forgot_password_request:
+    path: /reset-password
+    controller: App\Controller\ResetPasswordController::request
+
+app_reset_password:
+    path: /reset-password/{token}
+    controller: App\Controller\ResetPasswordController::reset
+app_profile:
+    path: /profile
+    controller: App\Controller\ProfileController::index
+
+api_login:
+    path: /api/login
+    controller: App\Api\AuthController::login
+    methods: POST
+api_comment_index:
+    path: /api/comments
+    controller: App\Api\CommentController::index
+    methods: GET
