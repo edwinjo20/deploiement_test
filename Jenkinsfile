@@ -57,14 +57,14 @@ pipeline {
 
         stage('Déploiement') {
             steps {
-                sh "sudo rm -rf /var/www/html/${DEPLOY_DIR}" // Force delete with sudo
-                sh "sudo mkdir /var/www/html/${DEPLOY_DIR}" // Recreate directory
-                sh "sudo cp -rT ${DEPLOY_DIR} /var/www/html/${DEPLOY_DIR}" // Copy files
-                sh "sudo chown -R jenkins:www-data /var/www/html/${DEPLOY_DIR}" // Set correct ownership
-                sh "sudo chmod -R 775 /var/www/html/${DEPLOY_DIR}/var" // Ensure write access
+                sh "rm -rf /var/www/html/${DEPLOY_DIR}" // Remove old directory
+                sh "mkdir -p /var/www/html/${DEPLOY_DIR}" // Create new directory
+                sh "cp -rT ${DEPLOY_DIR} /var/www/html/${DEPLOY_DIR}" // Copy files
+                sh "chown -R jenkins:www-data /var/www/html/${DEPLOY_DIR}" // Set correct ownership
+                sh "chmod -R 775 /var/www/html/${DEPLOY_DIR}/var" // Ensure write access
             }
         }
-    } // ✅ Added closing bracket for `stages`
+    }
 
     post {
         success {
