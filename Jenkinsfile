@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO = "https://github.com/edwinjo20/symfony_cineconnect.git"
+        GIT_REPO = "https://github.com/edwinjo20/deploiement_test.git"
         GIT_BRANCH = "main"
         DEPLOY_DIR = "web005"
         DB_NAME = "web005"
