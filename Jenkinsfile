@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Cloner le dépôt') {
             steps {
-                sh "rm -rf ${DEPLOY_DIR}" // Nettoyage du précédent build
+                sh "rm -rf ${DEPLOY_DIR}" // Cleanup previous build
                 sh "git clone -b ${GIT_BRANCH} ${GIT_REPO} ${DEPLOY_DIR}"
             }
         }
@@ -64,14 +64,14 @@ pipeline {
                 sh "sudo chmod -R 775 /var/www/html/${DEPLOY_DIR}/var" // Ensure write access
             }
         }
-
+    } // ✅ Added closing bracket for `stages`
 
     post {
         success {
-            echo 'Déploiement réussi !'
+            echo '🚀 Déploiement réussi !'
         }
         failure {
-            echo 'Erreur lors du déploiement.'
+            echo '❌ Erreur lors du déploiement.'
         }
     }
 }
